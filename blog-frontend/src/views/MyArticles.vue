@@ -8,11 +8,17 @@
       <el-table :data="articles" style="width: 100%" v-loading="loading">
         <el-table-column prop="title" label="标题" />
         <el-table-column prop="summary" label="摘要" />
-        <el-table-column prop="createdAt" label="创建时间">
+        <el-table-column label="封面">
           <template #default="scope">
-            {{ formatDate(scope.row.createdAt) }}
+            <img v-if="scope.row.coverImage" :src="scope.row.coverImage" :alt="scope.row.title" class="cover-image" />
+            <span v-else>无</span>
           </template>
         </el-table-column>
+        <el-table-column prop="createTime" label="创建时间">
+      <template #default="scope">
+        {{ formatDate(scope.row.createTime) }}
+      </template>
+    </el-table-column>
         <el-table-column label="操作">
           <template #default="scope">
             <el-button size="small" @click="handleEditArticle(scope.row.id)">编辑</el-button>
@@ -52,8 +58,8 @@ const fetchArticles = async () => {
   try {
     loading.value = true
     const response = await getArticles({
-      page: currentPage.value,
-      size: pageSize.value,
+      page: currentPage.value - 1,
+      size: pageSize.value
       // 这里可以添加其他筛选条件，比如只获取当前用户的文章
     })
     
@@ -118,6 +124,12 @@ onMounted(() => {
   .pagination {
     display: flex;
     justify-content: center;
+  }
+  
+  .cover-image {
+    max-width: 100px;
+    max-height: 60px;
+    border-radius: 4px;
   }
 }
 </style>

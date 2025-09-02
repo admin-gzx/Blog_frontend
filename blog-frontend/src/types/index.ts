@@ -1,12 +1,7 @@
-// 用户类型
-export interface User {
-  id: number
-  username: string
-  email: string
-  nickname: string
-  avatar?: string
-  createdAt: string
-}
+export type { User } from './user'
+export type { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from './auth'
+export type { Tag } from './tag'
+export type { Category } from './category'
 
 // 文章类型
 export interface Article {
@@ -14,35 +9,22 @@ export interface Article {
   title: string
   summary: string
   content: string
+  coverImage?: string
   categoryId?: number
   categoryName?: string
   tagIds?: number[]
   tags?: Tag[]
-  authorId: number
-  authorName: string
-  username: string
+  author: User
   viewCount: number
   likeCount: number
-  createdAt: string
-  updatedAt: string
   createTime: string
-}
-
-// 分类类型
-export interface Category {
-  id: number
-  name: string
-  createdAt: string
-}
-
-// 标签类型
-export interface Tag {
-  id: number
-  name: string
-  createdAt: string
+  updateTime: string
 }
 
 // 分页响应类型
+// API文档中的分页响应是一个数组，而不是包含items、total等字段的对象
+// 但为了保持前端代码的一致性，我们保留这个定义
+// 在实际使用中，我们需要根据API响应格式进行适配
 export interface PaginationResponse<T> {
   items: T[]
   total: number

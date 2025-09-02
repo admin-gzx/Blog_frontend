@@ -4,8 +4,12 @@
       <div class="card" v-if="article">
         <h1 class="article-title">{{ article.title }}</h1>
         
+        <div class="article-cover" v-if="article.coverImage">
+          <img :src="article.coverImage" :alt="article.title" />
+        </div>
+        
         <div class="article-meta">
-          <span>作者: {{ article.username }}</span>
+          <span>作者: {{ article.author.nickname || article.author.username }}</span>
           <span>分类: {{ article.categoryName }}</span>
           <span>发布时间: {{ formatDate(article.createTime) }}</span>
           <span>浏览: {{ article.viewCount }}</span>
@@ -84,6 +88,17 @@ onMounted(() => {
   font-size: 32px;
   margin-bottom: 20px;
   color: var(--text-color);
+}
+
+.article-cover {
+  margin-bottom: 20px;
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .article-meta {

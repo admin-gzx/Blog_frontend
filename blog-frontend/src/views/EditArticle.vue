@@ -17,6 +17,9 @@
       <el-form-item label="内容" prop="content">
         <el-input v-model="articleForm.content" type="textarea" :rows="10" />
       </el-form-item>
+      <el-form-item label="封面图片" prop="coverImage">
+        <el-input v-model="articleForm.coverImage" placeholder="请输入封面图片URL" />
+      </el-form-item>
       <el-form-item label="标签" prop="tags">
         <el-select 
           v-model="articleForm.tags" 
@@ -79,6 +82,7 @@ const articleForm = reactive({
   title: '',
   summary: '',
   content: '',
+  coverImage: '',
   tags: [] as number[] | never[] | undefined,
   category: undefined as number | undefined
 })
@@ -104,6 +108,7 @@ const fetchArticle = async (id: number) => {
     articleForm.title = article.title
     articleForm.summary = article.summary
     articleForm.content = article.content
+    articleForm.coverImage = article.coverImage || ''
     articleForm.tags = article.tags?.map((tag: Tag) => tag.id) || []
     articleForm.category = article.categoryId ?? undefined
   } catch (error) {
@@ -145,8 +150,9 @@ const handleSubmit = async () => {
         title: articleForm.title,
         summary: articleForm.summary,
         content: articleForm.content,
+        coverImage: articleForm.coverImage || undefined,
         tagIds: articleForm.tags,
-        categoryId: articleForm.category ?? undefined ?? undefined
+        categoryId: articleForm.category ?? undefined
       })
       ElMessage.success('文章更新成功')
     } else {
@@ -154,6 +160,7 @@ const handleSubmit = async () => {
         title: articleForm.title,
         summary: articleForm.summary,
         content: articleForm.content,
+        coverImage: articleForm.coverImage || undefined,
         tagIds: articleForm.tags,
         categoryId: articleForm.category
       })

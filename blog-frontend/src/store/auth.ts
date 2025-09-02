@@ -22,10 +22,18 @@ const useAuthStore = defineStore('auth', {
     async login(username: string, password: string) {
       try {
         const response = await loginApi({ username, password })
-        const { token, user } = response.data
+        const { token, id, username: responseUsername, email } = response.data
         
         this.token = token
-        this.currentUser = user
+        this.currentUser = {
+          id,
+          username: responseUsername,
+          email,
+          nickname: responseUsername,
+          enabled: true,
+          createTime: new Date().toISOString(),
+          updateTime: new Date().toISOString()
+        }
         
         localStorage.setItem('token', token)
         
@@ -40,6 +48,19 @@ const useAuthStore = defineStore('auth', {
     async register(username: string, email: string, nickname: string, password: string) {
       try {
         const response = await registerApi({ username, email, nickname, password })
+        const userData = response.data;
+        
+        this.currentUser = {
+          id: userData.id,
+          username: userData.username,
+          email: userData.email,
+          nickname: userData.nickname || userData.username,
+          avatar: userData.avatar,
+          enabled: userData.enabled,
+          createTime: userData.createTime,
+          updateTime: userData.updateTime
+        };
+        
         return response
       } catch (error) {
         throw error

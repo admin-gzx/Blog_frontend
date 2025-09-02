@@ -3,7 +3,11 @@ export interface User {
   id: number
   username: string
   email: string
-  nickname: string
+  nickname?: string
   avatar?: string
-  createdAt: string
+  enabled: boolean
+  createTime: string
+  updateTime: string
 }
+
+export type { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from './auth'

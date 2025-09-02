@@ -8,11 +8,14 @@
       
       <div class="article-list">
         <div class="article-item card" v-for="article in articles" :key="article.id">
+          <div class="article-cover" v-if="article.coverImage">
+            <img :src="article.coverImage" :alt="article.title" />
+          </div>
           <div class="article-title">
             <router-link :to="`/article/${article.id}`">{{ article.title }}</router-link>
           </div>
           <div class="article-meta">
-            <span>作者: {{ article.username }}</span>
+            <span>作者: {{ article.author.nickname || article.author.username }}</span>
             <span>分类: {{ article.categoryName }}</span>
             <span>发布时间: {{ formatDate(article.createTime) }}</span>
             <span>浏览: {{ article.viewCount }}</span>
@@ -88,6 +91,17 @@ onMounted(() => {
   p {
     font-size: 18px;
     color: #666;
+  }
+}
+
+.article-cover {
+  margin-bottom: 15px;
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 }
 
