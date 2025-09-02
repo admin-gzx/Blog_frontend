@@ -9,8 +9,8 @@
         
         <div class="footer-section">
           <h3>联系方式</h3>
-          <p>邮箱: example@example.com</p>
-          <p>GitHub: github.com/example</p>
+          <p>邮箱: 3105216868@qq.com</p>
+          <p>GitHub: github.com</p>
         </div>
         
         <div class="footer-section">
@@ -24,7 +24,7 @@
       </div>
       
       <div class="footer-bottom">
-        <p>&copy; 2023 我的博客. All rights reserved.</p>
+        <p>&copy; 2025 我的博客. All rights reserved.</p>
       </div>
     </div>
   </footer>
