@@ -1,0 +1,140 @@
+// 全局样式文件
+
+// 清新风格的色彩搭配
+:root {
+  --primary-color: #42b983; // Vue绿色
+  --secondary-color: #64b5f6; // 蓝色
+  --background-color: #f5f7fa; // 浅灰色背景
+  --text-color: #2c3e50; // 深灰色文字
+  --border-color: #eaecef; // 边框颜色
+  --shadow-color: rgba(0, 0, 0, 0.1); // 阴影颜色
+}
+
+// 重置默认样式
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  line-height: 1.6;
+}
+
+// 容器样式
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// 卡片样式
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px var(--shadow-color);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 4px 20px var(--shadow-color);
+  }
+}
+
+// 按钮样式
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  
+  &.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    
+    &:hover {
+      background-color: color-mix(in srgb, var(--primary-color), black 10%);
+    }
+  }
+  
+  &.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+    
+    &:hover {
+      background-color: color-mix(in srgb, var(--secondary-color), black 10%);
+    }
+  }
+}
+
+// 表单样式
+.form-group {
+  margin-bottom: 20px;
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+    
+    &:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(66, 185, 131, 0.2);
+    }
+  }
+}
+
+// 文章列表样式
+.article-list {
+  .article-item {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    .article-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+      
+      a {
+        color: var(--text-color);
+        text-decoration: none;
+        
+        &:hover {
+          color: var(--primary-color);
+        }
+      }
+    }
+    
+    .article-meta {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 10px;
+      
+      span {
+        margin-right: 15px;
+      }
+    }
+    
+    .article-summary {
+      color: #666;
+    }
+  }
+}
