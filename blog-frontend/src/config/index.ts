@@ -10,12 +10,12 @@ const getConfig = (): Config => {
   switch (env) {
     case 'production':
       return {
-        apiBaseUrl: 'https://your-production-api.com'  // 移除了重复的 /api
+        apiBaseUrl: 'https://your-production-api.com'
       }
     case 'development':
     default:
       return {
-        apiBaseUrl: 'http://localhost:8080'  // 移除了重复的 /api
+        apiBaseUrl: 'http://localhost:8080'
       }
   }
 }

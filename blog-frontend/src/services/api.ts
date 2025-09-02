@@ -12,7 +12,14 @@ api.interceptors.request.use(
   config => {
     const token = localStorage.getItem('token')
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`
+      // 验证JWT令牌格式是否正确（包含两个点号）
+      if (token.split('.').length === 3) {
+        config.headers.Authorization = `Bearer ${token}`
+      } else {
+        // 如果令牌格式不正确，清除它
+        localStorage.removeItem('token')
+        console.warn('Invalid JWT token format, token removed from localStorage')
+      }
     }
     return config
   },

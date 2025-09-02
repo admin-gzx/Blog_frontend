@@ -77,8 +77,15 @@ const useAuthStore = defineStore('auth', {
     checkAuthStatus() {
       const token = localStorage.getItem('token')
       if (token) {
-        this.token = token
-        // 这里可以添加获取用户信息的逻辑
+        // 验证JWT令牌格式是否正确（包含两个点号）
+        if (token.split('.').length === 3) {
+          this.token = token
+          // 这里可以添加获取用户信息的逻辑
+        } else {
+          // 如果令牌格式不正确，清除它
+          localStorage.removeItem('token')
+          console.warn('Invalid JWT token format, token removed from localStorage')
+        }
       }
     }
   }
